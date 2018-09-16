@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Loki.Core.Application", "Lo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Loki.Core.Domain", "Loki.Core.Domain\Loki.Core.Domain.csproj", "{8AC014BA-DB50-44E7-B3F2-C69DC860A04D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Loki.Core.Infraintructure", "Loki.Core.Infraintructure\Loki.Core.Infraintructure.csproj", "{F2ED3FBC-2C2A-43C4-922E-B849FCA9D899}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Loki.Core.Infrastructure", "Loki.Core.Infraintructure\Loki.Core.Infrastructure.csproj", "{F2ED3FBC-2C2A-43C4-922E-B849FCA9D899}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
