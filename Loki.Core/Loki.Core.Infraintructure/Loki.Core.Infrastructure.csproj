@@ -4,4 +4,13 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Drapper" Version="1.2.0" />
+    <PackageReference Include="Npgsql" Version="4.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Loki.Core.Domain\Loki.Core.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

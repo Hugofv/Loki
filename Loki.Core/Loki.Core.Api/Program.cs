@@ -1,25 +1,28 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
 
 namespace Loki.Core.Api
 {
+    /// <inheritdoc />
     public class Program
     {
+        private static readonly string Url = Environment.GetEnvironmentVariable("KESTREL_HOSTNAME") ?? "http://127.0.0.1:5000";
+
+        /// <inheritdoc />
         public static void Main(string[] args)
         {
-            BuildWebHost(args).Run();
-        }
-
-        public static IWebHost BuildWebHost(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
+            var host = new WebHostBuilder()
+                .UseUrls(Url)
+                .UseKestrel()
+                .UseContentRoot(Directory.GetCurrentDirectory())
+                .UseIISIntegration()
                 .UseStartup<Startup>()
+                .UseApplicationInsights()
                 .Build();
+
+            host.Run();
+        }
     }
 }
