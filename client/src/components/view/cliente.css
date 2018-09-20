@@ -7,3 +7,8 @@
   display: flex !important;
   justify-content: space-around
 }
+
+.title-table {
+  font-size: 1.2em !important;
+  font-weight: bold !important
+}

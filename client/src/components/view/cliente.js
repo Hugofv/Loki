@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { AppBar, Toolbar, Typography, Table, 
     TableBody, TableCell, TableHead, TableRow, 
-    Paper, Dialog, Button, TextField, InputAdornment } from '@material-ui/core';
+    Paper, Dialog, Button, TextField, InputAdornment,
+    CircularProgress } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -15,7 +16,7 @@ library.add(faPlusCircle, faPencilAlt, faTrashAlt, faSearch);
 
 const CustomTableCell = withStyles(theme => ({
     head: {
-        backgroundColor: theme.palette.common.black,
+        backgroundColor: '#4799B7',
         color: theme.palette.common.white,
     },
     body: {
@@ -31,7 +32,8 @@ class Cliente extends Component {
             openDelete: false,
             cliente: {},
             clientesFilter: [],
-            strFilter: ''
+            strFilter: '',
+            openSnack: ''
         }
         this.filterClientes = this.filterClientes.bind(this);
     }
@@ -42,7 +44,7 @@ class Cliente extends Component {
 
     componentWillReceiveProps(props) {
         this.setState({
-            clientesFilter: props.clientes
+            clientesFilter: props.clientes.clientes
         })
     }
 
@@ -72,10 +74,11 @@ class Cliente extends Component {
 
   render() {
     const { cliente, clientesFilter, strFilter } = this.state;
+    const { clientes } = this.props;
 
     return (
       <div className="App">
-        <AppBar position="static" style={{ backgroundColor: '#009688' }}>
+        <AppBar position="static" style={{ backgroundColor: '#153641' }}>
             <Toolbar>
             <Typography variant="title" color="inherit" style={{textAlign: 'center', width: '100%', fontSize: '2em', fontWeight: 'bold'}}>
                 Cliente
@@ -100,36 +103,43 @@ class Cliente extends Component {
                                     ),
                             }}/>
                     <div>
-                        <FontAwesomeIcon onClick={() => this.handleClickOpen(null)} icon='plus-circle' size='4x' style={{ cursor: 'pointer' }} />
+                        <FontAwesomeIcon onClick={() => this.handleClickOpen(null)} 
+                                        icon='plus-circle' size='4x' style={{ cursor: 'pointer', color: '#22556E' }} />
                     </div>
                 </Toolbar>
                 <Table style={{maxHeight: '20em', overflow: 'auto'}} >
                     <TableHead>
                     <TableRow>
-                        <CustomTableCell>Nome</CustomTableCell>
-                        <CustomTableCell>Tipo</CustomTableCell>
-                        <CustomTableCell>CPF/CPNJ</CustomTableCell>
-                        <CustomTableCell style={{width: '10%'}} >Ações</CustomTableCell>
+                        <CustomTableCell className='title-table'>Nome</CustomTableCell>
+                        <CustomTableCell className='title-table'>Tipo</CustomTableCell>
+                        <CustomTableCell className='title-table'>CPF/CPNJ</CustomTableCell>
+                        <CustomTableCell  className='title-table' style={{width: '10%'}} >Ações</CustomTableCell>
                     </TableRow>
                     </TableHead>
-                    <TableBody>
-                        {
-                            clientesFilter.map(e => {
-                               return <TableRow key={e.id} className='cell'>
-                                    <CustomTableCell component="th" scope="row"> {e.nome}</CustomTableCell>
-                                    <CustomTableCell component="th" scope="row"> {e.pessoa_fisica ? 'Pessoa Fisíca' : 'Pessoa Juridica'}</CustomTableCell>
-                                    <CustomTableCell>{e.pessoa_fisica ? e.pessoa_fisica.cpf : e.pessoa_juridica ? e.pessoa_juridica.cnpj : ''}</CustomTableCell>
-                                    <CustomTableCell>
-                                        <div className='action'>
-                                            <FontAwesomeIcon onClick={() => this.handleClickOpen(e)} icon='pencil-alt' size='2x' style={{ cursor: 'pointer' }} />
-                                            <FontAwesomeIcon onClick={() => this.setState({openDelete: true, cliente: e})} icon='trash-alt'
-                                                             size='2x' style={{ cursor: 'pointer' }} />
-                                        </div>
-                                    </CustomTableCell>
-                                </TableRow>
-                            })
-                        }
-                    </TableBody>
+                    {
+                        !clientes.fetchFinish
+                        ?   <div style={{display: 'flex', justifyContent: 'center', width: '315%', padding: '3em'}}>
+                                <CircularProgress style={{color: '#6DB3BF'}}  size={50} thickness={7}/>
+                            </div>
+                            : <TableBody>
+                            {
+                                clientesFilter.map(e => {
+                                   return <TableRow key={e.id} className='cell'>
+                                        <CustomTableCell component="th" scope="row"> {e.nome}</CustomTableCell>
+                                        <CustomTableCell component="th" scope="row"> {e.pessoa_fisica ? 'Pessoa Fisíca' : 'Pessoa Juridica'}</CustomTableCell>
+                                        <CustomTableCell>{e.pessoa_fisica ? e.pessoa_fisica.cpf : e.pessoa_juridica ? e.pessoa_juridica.cnpj : ''}</CustomTableCell>
+                                        <CustomTableCell>
+                                            <div className='action'>
+                                                <FontAwesomeIcon onClick={() => this.handleClickOpen(e)} icon='pencil-alt' size='2x' style={{ cursor: 'pointer' }} />
+                                                <FontAwesomeIcon onClick={() => this.setState({openDelete: true, cliente: e})} icon='trash-alt'
+                                                                 size='2x' style={{ cursor: 'pointer' }} />
+                                            </div>
+                                        </CustomTableCell>
+                                    </TableRow>
+                                })
+                            }
+                        </TableBody>
+                    }
                 </Table>
             </Paper>
         </div>
@@ -167,7 +177,7 @@ class Delete extends Component {
 
 function mapStateToProps(state) {
     return {
-        clientes: state.cliente.clientes
+        clientes: state.cliente
     }
 }
 

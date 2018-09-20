@@ -1,7 +1,7 @@
 import types from '../actions/types';
 
 const initialState = {
-  loggedIn: false,
+  fetchFinish: false,
   isFetching: false,
   hasError: false,
   errorMessage: '',
@@ -14,7 +14,7 @@ export default (state = initialState, action) => {
       const { clientes } = action;
       return {
         ...state,
-        isFetching: false,
+        fetchFinish: true,
         loggedIn: true,
         clientes,
       };

@@ -33,7 +33,9 @@ class Form extends Component {
             cpf: '',
             cnpj: '',
             dtNascimento: '',
-            razaoSocial: ''
+            razaoSocial: '',
+            disableF: false,
+            disableJ: false
         }
         this.salvar = this.salvar.bind(this);
         this.clearState = this.clearState.bind(this);
@@ -52,7 +54,9 @@ class Form extends Component {
             cpf: '',
             cnpj: '',
             dtNascimento: '',
-            razaoSocial: ''
+            razaoSocial: '',
+            disableF: false,
+            disableJ: false
         });
     }
 
@@ -65,7 +69,9 @@ class Form extends Component {
                 dtNascimento: cliente.pessoa_fisica ? moment(cliente.pessoa_fisica.data_nascimento).format('YYYY-MM-DD') : '',
                 cnpj: cliente.pessoa_juridica ? cliente.pessoa_juridica.cnpj : '',
                 razaoSocial: cliente.pessoa_juridica ? cliente.pessoa_juridica.razao_social : '',
-                tipo: cliente.pessoa_fisica ? 'F' : 'J'
+                tipo: cliente.pessoa_fisica ? 'F' : 'J',
+                disableF: cliente.pessoa_fisica,
+                disableJ: cliente.pessoa_juridica
             })
         }
     }
@@ -108,7 +114,7 @@ class Form extends Component {
     }
 
     render() {
-        const { nome, cpf, cnpj, dtNascimento, razaoSocial, tipo } = this.state;
+        const { nome, cpf, cnpj, dtNascimento, razaoSocial, disableF, disableJ } = this.state;
         return (
             <Dialog onClose={this.handleClose} open={this.props.open} aria-labelledby="simple-dialog-title">
                 <div style={{padding: '2em', minWidth: '28em'}}>
@@ -133,8 +139,8 @@ class Form extends Component {
                                     value={this.state.tipo}
                                     onChange={(event) => this.setState({tipo: event.target.value})}
                                 >
-                                <FormControlLabel value="F" control={<Radio />} label="Pessoa Fisíca" />
-                                <FormControlLabel value="J" control={<Radio />} label="Pessoa Jurídica" />
+                                <FormControlLabel disabled={disableF} value="F" control={<Radio />} label="Pessoa Fisíca" />
+                                <FormControlLabel disabled={disableJ} value="J" control={<Radio />} label="Pessoa Jurídica" />
                             </RadioGroup>
                         </FormControl>
 

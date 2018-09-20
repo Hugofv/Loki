@@ -1,4 +1,4 @@
-const APIRoot = 'http://localhost:5000/api';
+const APIRoot = '';
 
 export default {
   CLIENTE: APIRoot + '/cliente'
