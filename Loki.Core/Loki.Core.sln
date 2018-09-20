@@ -3,13 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2042
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Loki.Core.Api", "Loki.Core.Api\Loki.Core.Api.csproj", "{B5C3C51F-41FB-49A3-AF5D-38E2057F8AFC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Loki.Core.Api", "Loki.Core.Api\Loki.Core.Api.csproj", "{B5C3C51F-41FB-49A3-AF5D-38E2057F8AFC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Loki.Core.Application", "Loki.Core.Application\Loki.Core.Application.csproj", "{F4693B5B-55F9-4D48-B822-54AB9F218F3C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Loki.Core.Application", "Loki.Core.Application\Loki.Core.Application.csproj", "{F4693B5B-55F9-4D48-B822-54AB9F218F3C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Loki.Core.Domain", "Loki.Core.Domain\Loki.Core.Domain.csproj", "{8AC014BA-DB50-44E7-B3F2-C69DC860A04D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Loki.Core.Domain", "Loki.Core.Domain\Loki.Core.Domain.csproj", "{8AC014BA-DB50-44E7-B3F2-C69DC860A04D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Loki.Core.Infrastructure", "Loki.Core.Infraintructure\Loki.Core.Infrastructure.csproj", "{F2ED3FBC-2C2A-43C4-922E-B849FCA9D899}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Loki.Core.Infrastructure", "Loki.Core.Infraintructure\Loki.Core.Infrastructure.csproj", "{F2ED3FBC-2C2A-43C4-922E-B849FCA9D899}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Loki.Core.Application.Test", "Loki.Core.Application.Test\Loki.Core.Application.Test.csproj", "{1BF0BB2B-DC8B-48AC-874B-3256F49B26A2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Loki.Core.Api.Tests", "Loki.Core.Api.Tests\Loki.Core.Api.Tests.csproj", "{5753A1F3-9904-470D-B099-BB30FACFC2B2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Loki.Core.Domain.Tests", "Loki.Core.Domain.Tests\Loki.Core.Domain.Tests.csproj", "{2E58B4BB-DD3D-4701-ADD1-3583231523A6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +39,18 @@ Global
 		{F2ED3FBC-2C2A-43C4-922E-B849FCA9D899}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F2ED3FBC-2C2A-43C4-922E-B849FCA9D899}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F2ED3FBC-2C2A-43C4-922E-B849FCA9D899}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1BF0BB2B-DC8B-48AC-874B-3256F49B26A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BF0BB2B-DC8B-48AC-874B-3256F49B26A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BF0BB2B-DC8B-48AC-874B-3256F49B26A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BF0BB2B-DC8B-48AC-874B-3256F49B26A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5753A1F3-9904-470D-B099-BB30FACFC2B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5753A1F3-9904-470D-B099-BB30FACFC2B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5753A1F3-9904-470D-B099-BB30FACFC2B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5753A1F3-9904-470D-B099-BB30FACFC2B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E58B4BB-DD3D-4701-ADD1-3583231523A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E58B4BB-DD3D-4701-ADD1-3583231523A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E58B4BB-DD3D-4701-ADD1-3583231523A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E58B4BB-DD3D-4701-ADD1-3583231523A6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

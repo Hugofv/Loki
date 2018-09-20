@@ -17,7 +17,11 @@ namespace Loki.Core.Api.Controllers
         {
             _clienteService = clienteService;
         }
-
+        /// <summary>
+        /// Cria um novo Cliente
+        /// </summary>
+        /// <param name="cliente"> Json do cliente a ser cadastrado</param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult Criar([FromBody] Cliente cliente)
         {
@@ -36,6 +40,12 @@ namespace Loki.Core.Api.Controllers
             }
         }
 
+        /// <summary>
+        /// Atualiza as informações do cliente ja cadastrado
+        /// </summary>
+        /// <param name="cliente">Json do cliente a ser atualizado</param>
+        /// <param name="uuid">Uuid do cliente a ser atualizado</param>
+        /// <returns></returns>
         [HttpPut("{uuid}")]
         public IActionResult Atualizar([FromBody] Cliente cliente, Guid uuid)
         {
@@ -54,6 +64,11 @@ namespace Loki.Core.Api.Controllers
             }
         }
 
+        /// <summary>
+        /// Exclui o cliente
+        /// </summary>
+        /// <param name="uuid">Uuid do cliente a ser excluido do sistema</param>
+        /// <returns></returns>
         [HttpDelete("{uuid}")]
         public IActionResult Excluir(Guid uuid)
         {
@@ -72,6 +87,10 @@ namespace Loki.Core.Api.Controllers
             }
         }
 
+        /// <summary>
+        /// Busca todos os clientes cadastrados
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult Listar()
         {
