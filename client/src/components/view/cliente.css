@@ -1,0 +1,9 @@
+.action {
+  visibility: hidden;
+}
+
+.cell:hover .action {
+  visibility: visible !important;
+  display: flex !important;
+  justify-content: space-around
+}

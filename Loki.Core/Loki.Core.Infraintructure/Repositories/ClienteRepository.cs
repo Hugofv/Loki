@@ -77,7 +77,8 @@ namespace Loki.Core.Infrastructure.Repositories
                         conexao.Execute(ClienteQuery.AtualizaPessoaFisica, new
                         {
                             cliente.PessoaFisica.Cpf,
-                            cliente.PessoaFisica.DataNascimento
+                            cliente.PessoaFisica.DataNascimento,
+                            PessoaFisicaId = cliente.PessoaFisica.Id
                         });
                     }
 
@@ -86,13 +87,15 @@ namespace Loki.Core.Infrastructure.Repositories
                         conexao.Execute(ClienteQuery.AtualizaPessoaJuridica, new
                         {
                             cliente.PessoaJuridica.Cnpj,
-                            cliente.PessoaJuridica.RazaoSocial
+                            cliente.PessoaJuridica.RazaoSocial,
+                            PessoaJuridicaId = cliente.PessoaJuridica.Id
                         });
                     }
 
                     conexao.Execute(ClienteQuery.Atualiza, new
                     {
-                        cliente.Nome
+                        cliente.Nome,
+                        Uuid = uuid
                     });
 
                     transacao.Commit();

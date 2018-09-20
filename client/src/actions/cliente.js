@@ -42,20 +42,44 @@ export const cadastrarCliente = (data) => (dispatch) => {
   }
 }
 
+export const atualizarCliente = (data, uuid) => (dispatch) => {
+  try {
+    fetch(endPoint.CLIENTE + '/' + uuid, {
+      method: 'put',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+    .then(response => {
+      if(response.status == 200) {
+        dispatch(buscarClientes());
+      }
+    })
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export const excluirCliente = uuid => dispatch => {
+  try {
+    fetch(endPoint.CLIENTE + '/' + uuid, {
+      method: 'delete',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => {
+      if(response.status == 200) {
+        dispatch(buscarClientes());
+      }
+    })
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 const dispatchCliente = clientes => ({
   type: types.BUSCAR_CLIENTE,
   clientes
-})
-
-const logoutStart = () => ({
-  type: types.LOGOUT_START,
-});
-
-const logoutFinished = () => ({
-  type: types.LOGOUT_FINISHED,
-});
-
-const logoutError = error => ({
-  type: types.LOGOUT_ERROR,
-  error,
 });

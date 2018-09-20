@@ -61,7 +61,8 @@
             FROM ""Cliente"" cli
             LEFT JOIN ""PessoaFisica"" pf ON pf.""Id"" = cli.""PessoaFisicaId"" AND pf.""Ativo"" IS TRUE
             LEFT JOIN ""PessoaJuridica"" pj ON pj.""Id"" = cli.""PessoaJuridicaId"" AND pj.""Ativo"" IS TRUE
-            WHERE cli.""Ativo"" IS TRUE;
+            WHERE cli.""Ativo"" IS TRUE
+            ORDER BY cli.""Nome"";
         ";
     }
 }

@@ -2,8 +2,9 @@ import React, {Component} from 'react'
 import { Dialog, TextField, RadioGroup, Button, Input,
      Radio, FormControl, FormLabel, FormControlLabel, InputLabel } from '@material-ui/core';
 import NumberFormat from 'react-number-format';
-import {cadastrarCliente} from './../../actions/cliente';
+import { cadastrarCliente, atualizarCliente } from './../../actions/cliente';
 import { connect } from 'react-redux';
+import moment from 'moment';
 
 function NumberFormatCustom(props) {
     const { inputRef, onChange, rows, ...other } = props;
@@ -35,6 +36,7 @@ class Form extends Component {
             razaoSocial: ''
         }
         this.salvar = this.salvar.bind(this);
+        this.clearState = this.clearState.bind(this);
     }
 
     handleChange = name => event => {
@@ -43,7 +45,33 @@ class Form extends Component {
         });
     };
 
+    clearState() {
+        this.setState({
+            tipo: 'F',
+            nome: '',
+            cpf: '',
+            cnpj: '',
+            dtNascimento: '',
+            razaoSocial: ''
+        });
+    }
+
+    componentWillReceiveProps(props) {
+        let {cliente} = props;
+        if(cliente) {
+            this.setState({
+                nome: cliente.nome,
+                cpf: cliente.pessoa_fisica ? cliente.pessoa_fisica.cpf : '',
+                dtNascimento: cliente.pessoa_fisica ? moment(cliente.pessoa_fisica.data_nascimento).format('YYYY-MM-DD') : '',
+                cnpj: cliente.pessoa_juridica ? cliente.pessoa_juridica.cnpj : '',
+                razaoSocial: cliente.pessoa_juridica ? cliente.pessoa_juridica.razao_social : '',
+                tipo: cliente.pessoa_fisica ? 'F' : 'J'
+            })
+        }
+    }
+
     handleClose = () => {
+        this.clearState();
         this.props.onClose(this.props.selectedValue);
     };
 
@@ -60,25 +88,31 @@ class Form extends Component {
                 pessoa_fisica: tipo == 'F' ? {
                     cpf: cpf,
                     data_nascimento: dtNascimento,
+                    id: this.props.cliente ? this.props.cliente.pessoa_fisica ? this.props.cliente.pessoa_fisica.id : 0 : 0
                 } : null,
                 pessoa_juridica: tipo == 'J' ? {
                     cnpj: cnpj,
-                    razao_social: razaoSocial
+                    razao_social: razaoSocial,
+                    id: this.props.cliente ? this.props.cliente.pessoa_juridica ? this.props.cliente.pessoa_juridica.id : 0 : 0
                 } : null
             }
 
-            this.props.cadastrarCliente(data);
+            if(this.props.cliente) {
+                this.props.atualizarCliente(data, this.props.cliente.uuid);
+            } else {
+                this.props.cadastrarCliente(data);
+            }
+            this.clearState();
             this.handleClose();
         }
     }
 
     render() {
         const { nome, cpf, cnpj, dtNascimento, razaoSocial, tipo } = this.state;
-        console.log(cpf);
         return (
             <Dialog onClose={this.handleClose} open={this.props.open} aria-labelledby="simple-dialog-title">
                 <div style={{padding: '2em', minWidth: '28em'}}>
-                    <h3>Cadastro de Cliente</h3>
+                    <h3>{this.props.cliente ? 'Atualizar Cliente' : 'Cadastrar Cliente'}</h3>
                     <div style={{display: 'flex', flexDirection: 'column'}} >
                         <TextField
                             id="standard-multiline-static"
@@ -176,6 +210,6 @@ class Form extends Component {
             </Dialog>
         );
     }
-  }
+}
 
-export default connect(null, { cadastrarCliente })(Form);
+export default connect(null, { cadastrarCliente, atualizarCliente })(Form);
