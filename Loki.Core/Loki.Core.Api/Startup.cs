@@ -29,7 +29,7 @@ namespace Loki.Core.Api
             {
                 options.AddPolicy("LokiPolicy",
                     builder => builder.WithOrigins(
-                            "http://localhost:3001"
+                            "http://localhost:3000"
                         )
                         .AllowAnyMethod()
                         .AllowAnyHeader()

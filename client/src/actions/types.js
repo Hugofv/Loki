@@ -1,0 +1,7 @@
+const types = {
+    BUSCAR_CLIENTE: 'BUSCAR_CLIENTE',
+    CADASTRAR_CLIENTE: 'CADASTRAR_CLIENTE',
+    ATUALIZAR_CLIENTE: 'ATUALIZAR_CLIENTE',
+  };
+  
+  export default types;
